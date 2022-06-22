@@ -6,15 +6,15 @@ import logging
 app = Flask(__name__)
 logging.basicConfig(filename='flask.log', level=logging.INFO,format='%(levelname)s:%(message)s')
 
-app.config['MYSQL_HOST'] = 'database-my.caomyyms75ok.us-east-1.rds.amazonaws.com'
-app.config['MYSQL_USER'] = 'suriya'
-app.config['MYSQL_PASSWORD'] = 'suriya123'
+app.config['MYSQL_HOST'] = 'database-mysql.caomyyms75ok.us-east-1.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'admin'
+app.config['MYSQL_PASSWORD'] = 'admin123'
 app.config['MYSQL_DB'] ='regform'
 
 mydb = mysql.connector.connect(
-  host="database-my.caomyyms75ok.us-east-1.rds.amazonaws.com",
-  user="suriya",
-  password="suriya123"
+  host="database-mysql.caomyyms75ok.us-east-1.rds.amazonaws.com",
+  user="admin",
+  password="admin123"
 )
 
 mycursor = mydb.cursor()
@@ -23,9 +23,9 @@ mycursor.execute("CREATE DATABASE IF NOT EXISTS regform")
 
 
 mydb = mysql.connector.connect(
-  host="database-my.caomyyms75ok.us-east-1.rds.amazonaws.com",
-  user="suriya",
-  password="suriya123",
+  host="database-mysql.caomyyms75ok.us-east-1.rds.amazonaws.com",
+  user="admin",
+  password="admin123",
   database="regform"
 )
 
