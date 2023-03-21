@@ -6,9 +6,7 @@ WORKDIR python-docker
 
 COPY requirements.txt requirements.txt
 
-RUN yum install python3 python3-pip git mysql -y
-
-RUN yum -y install python python3-devel mysql-devel redhat-rpm-config gcc 
+RUN yum install python3 python3-pip git mysql -y 
 
 RUN pip3 install -r requirements.txt
 
