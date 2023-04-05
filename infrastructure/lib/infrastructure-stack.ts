@@ -18,6 +18,11 @@ export class InfrastructureStack extends cdk.Stack {
       vpc: vpc,
     });
 
+    cluster.addCapacity('DefaultAutoScalingGroupCapacity', {
+      instanceType: new ec2.InstanceType("t2.micro"),
+      desiredCapacity: 1,
+    });
+
     // Create a task definition for your container
     const taskDefinition = new ecs.TaskDefinition(this, 'MyTaskDefinition', {
       compatibility: ecs.Compatibility.EC2,
