@@ -46,6 +46,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   DeployStack:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -62,6 +63,10 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Synth stack
-        run: yarn cdk synth
+        run: |
+          cd infrastructure
+          yarn cdk synth
       - name: Deploy stack
-        run: yarn cdk deploy --all --require-approval never
+        run: |
+          cd infrastructure 
+          yarn cdk deploy --all --require-approval never
