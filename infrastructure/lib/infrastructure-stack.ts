@@ -12,7 +12,8 @@ export class InfrastructureStack extends cdk.Stack {
     const vpc = new ec2.Vpc(this, 'MyVpc', {
       maxAzs: 2,
     });
-
+ 
+    
     // Create an ECS cluster
     const cluster = new ecs.Cluster(this, 'MyCluster', {
       vpc: vpc,
