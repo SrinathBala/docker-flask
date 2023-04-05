@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+
 env:
   AWS_REGION: eu-central-1
   ECR_REPOSITORY: demo-docker
