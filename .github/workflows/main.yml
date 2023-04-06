@@ -76,4 +76,4 @@ jobs:
 
       # Deploy the infrastructure using AWS CDK
       - name: Deploy Infrastructure
-        run: cdk deploy --require-approval never
+        run: cd infrastructure && cdk deploy --require-approval never
