@@ -65,7 +65,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y python3-pip
           pip3 install awscli --upgrade --user
-          npm install -g aws-cdk
 
       # Configure AWS credentials
       - name: Configure AWS credentials
@@ -77,4 +76,4 @@ jobs:
 
       # Deploy the infrastructure using AWS CDK
       - name: Deploy Infrastructure
-        run: npm run deploy --prefix infrastructure
+        run: cdk deploy --require-approval never
