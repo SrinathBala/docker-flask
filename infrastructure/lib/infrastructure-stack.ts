@@ -17,18 +17,13 @@ export class InfrastructureStack extends cdk.Stack {
     // Create an ECS cluster
     const cluster = new ecs.Cluster(this, 'MyCluster', {
       vpc: vpc,
-    });
-
-    cluster.addCapacity('DefaultAutoScalingGroupCapacity', {
-      instanceType: new ec2.InstanceType("t2.micro"),
-      desiredCapacity: 1,
+      containerInsights: true
     });
 
     // Create a task definition for your container
-    const taskDefinition = new ecs.TaskDefinition(this, 'MyTaskDefinition', {
-      compatibility: ecs.Compatibility.EC2,
-      memoryMiB: '512',
-      cpu: '256',
+    const taskDefinition = new ecs.FargateTaskDefinition(this, 'MyTaskDefinition', {
+      memoryLimitMiB: 512,
+      cpu: 256,
     });
 
     // Add a container to the task definition
@@ -39,11 +34,12 @@ export class InfrastructureStack extends cdk.Stack {
     });
 
     // Create a service for the container
-    const service = new ecs.Ec2Service(this, 'MyService', {
+    const service = new ecs.FargateService(this, 'MyService', {
       cluster: cluster,
       taskDefinition: taskDefinition,
-      desiredCount: 2,
-      enableECSManagedTags: true,
+      desiredCount: 1,
+      serviceName: 'my-service-name',
+      assignPublicIp: true,
     });
   }
 }
